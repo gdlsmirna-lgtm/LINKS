@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smirna GDL — Transmisión en vivo</title>
+<meta name="description" content="Iglesia Smirna GDL. Únete a nuestra transmisión en vivo de los domingos por Facebook y YouTube.">
+<style>
+  :root{
+    --ink:#0d1b2e;
+    --navy:#0f2140;
+    --navy-2:#16305a;
+    --parchment:#f5f7fa;
+    --gold:#c9a227;
+    --gold-soft:#e0b93f;
+    --line:rgba(245,247,250,0.14);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 700px at 15% -10%, rgba(201,162,39,0.10), transparent 60%),
+      radial-gradient(900px 600px at 100% 0%, rgba(22,48,90,0.35), transparent 55%),
+      var(--navy);
+    color:var(--parchment);
+    font-family: 'Georgia', 'Iowan Old Style', serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  @font-face{
+    font-family:'system-sans';
+    src:local('Helvetica Neue'), local('Arial');
+  }
+
+  .sans{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'system-sans', Arial, sans-serif;
+  }
+
+  a{color:inherit;}
+
+  /* ---------- header ---------- */
+  header{
+    padding: 56px 24px 16px;
+    text-align:center;
+  }
+
+  .wordmark{
+    font-size: 15px;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    margin-bottom:6px;
+  }
+
+  h1.brand{
+    font-size: clamp(2.6rem, 7vw, 4.4rem);
+    margin: 6px 0 4px;
+    font-weight:400;
+    letter-spacing:0.01em;
+    color:var(--parchment);
+  }
+
+  .tagline{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    color:rgba(245,247,250,0.72);
+    font-size:1rem;
+    letter-spacing:0.03em;
+    margin-bottom: 10px;
+  }
+
+  /* ---------- live section ---------- */
+  .live-wrap{
+    max-width:920px;
+    margin: 46px auto 0;
+    padding: 0 24px;
+  }
+
+  .live-eyebrow{
+    text-align:center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.28em;
+    font-size:0.72rem;
+    color:var(--gold-soft);
+    margin-bottom: 10px;
+  }
+
+  h2.live-title{
+    text-align:center;
+    font-weight:400;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    margin: 0 0 34px;
+  }
+
+  .services{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+  }
+
+  @media (max-width:640px){
+    .services{grid-template-columns:1fr;}
+  }
+
+  .service-card{
+    position:relative;
+    background: linear-gradient(160deg, rgba(245,247,250,0.05), rgba(245,247,250,0.015));
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding: 30px 26px 26px;
+    text-decoration:none;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  }
+
+  .service-card:hover{
+    transform: translateY(-3px);
+    border-color: rgba(201,162,39,0.55);
+    background: linear-gradient(160deg, rgba(245,247,250,0.08), rgba(245,247,250,0.02));
+  }
+
+  .service-card:focus-visible{
+    outline:2px solid var(--gold-soft);
+    outline-offset:3px;
+  }
+
+  .platform-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  }
+
+  .icon{
+    width:30px;
+    height:30px;
+    flex-shrink:0;
+  }
+
+  .platform-name{
+    font-size:1.15rem;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+
+  .service-time{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    font-size:2.2rem;
+    color:var(--gold-soft);
+    line-height:1;
+  }
+
+  .service-day{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    color:rgba(245,247,250,0.55);
+  }
+
+  .cta-line{
+    margin-top:auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    font-size:0.86rem;
+    color:rgba(245,247,250,0.65);
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+
+  .cta-line .arrow{
+    transition: transform 0.2s ease;
+  }
+  .service-card:hover .cta-line .arrow{
+    transform: translateX(4px);
+  }
+
+  .dot{
+    width:8px;height:8px;border-radius:50%;
+    background: var(--gold-soft);
+    display:inline-block;
+    box-shadow: 0 0 0 0 rgba(228,200,90,0.5);
+    animation: pulse 2.2s infinite;
+  }
+
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(228,200,90,0.45);}
+    70%{box-shadow:0 0 0 10px rgba(228,200,90,0);}
+    100%{box-shadow:0 0 0 0 rgba(228,200,90,0);}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .dot{animation:none;}
+    .service-card{transition:none;}
+  }
+
+  /* ---------- info strip ---------- */
+  .info-strip{
+    max-width:920px;
+    margin: 54px auto 0;
+    padding: 22px 24px;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:18px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    font-size:0.9rem;
+    color:rgba(245,247,250,0.75);
+  }
+
+  .info-strip a{
+    color: var(--gold-soft);
+    text-decoration:none;
+    border-bottom:1px solid rgba(228,200,90,0.4);
+  }
+  .info-strip a:hover{border-color:var(--gold-soft);}
+
+  .info-item{max-width:340px;}
+  .info-label{
+    display:block;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:0.68rem;
+    color:var(--gold-soft);
+    margin-bottom:4px;
+  }
+
+  /* ---------- social footer ---------- */
+  footer{
+    max-width:920px;
+    margin: 0 auto;
+    padding: 34px 24px 60px;
+    text-align:center;
+  }
+
+  .social-row{
+    display:flex;
+    justify-content:center;
+    gap:22px;
+    margin-bottom: 22px;
+    flex-wrap:wrap;
+  }
+
+  .social-row a{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    font-size:0.85rem;
+    text-decoration:none;
+    color:rgba(245,247,250,0.7);
+    padding-bottom:2px;
+    border-bottom:1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .social-row a:hover{
+    color:var(--gold-soft);
+    border-color:var(--gold-soft);
+  }
+
+  .fine-print{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    font-size:0.75rem;
+    color:rgba(245,247,250,0.35);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wordmark">Iglesia Cristiana</div>
+  <h1 class="brand">Smirna GDL</h1>
+  <div class="tagline">El lugar donde renace la vida</div>
+</header>
+
+<section class="live-wrap" id="vivo">
+  <div class="live-eyebrow">Domingo · Transmisión en vivo</div>
+  <h2 class="live-title">Únete al servicio desde donde estés</h2>
+
+  <div class="services">
+    <a class="service-card" href="https://www.facebook.com/iglesiasmirnagdl/" target="_blank" rel="noopener noreferrer" aria-label="Ver el servicio en vivo por Facebook, domingos 10:00 am">
+      <div class="platform-row">
+        <svg class="icon" viewBox="0 0 24 24" fill="#f5f7fa" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.23 10.44 22v-7.03H7.9v-2.91h2.54V9.86c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.91h-2.34V22C18.34 21.23 22 17.08 22 12.06Z"/></svg>
+        <span class="platform-name">Facebook</span>
+      </div>
+      <div class="service-time">10:00 <span class="sans" style="font-size:1.1rem;">am</span></div>
+      <div class="service-day">Servicio dominical</div>
+      <div class="cta-line"><span class="dot"></span> Ver transmisión en Facebook <span class="arrow">→</span></div>
+    </a>
+
+    <a class="service-card" href="https://www.youtube.com/c/SmirnaGDL" target="_blank" rel="noopener noreferrer" aria-label="Ver el servicio en vivo por YouTube, domingos 12:00 pm">
+      <div class="platform-row">
+        <svg class="icon" viewBox="0 0 24 24" fill="#f5f7fa" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.6 12 3.6 12 3.6s-7.6 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.5 9.4.5 9.4.5s7.6 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12l-6.2 3.5Z"/></svg>
+        <span class="platform-name">YouTube</span>
+      </div>
+      <div class="service-time">12:00 <span class="sans" style="font-size:1.1rem;">pm</span></div>
+      <div class="service-day">Servicio dominical</div>
+      <div class="cta-line"><span class="dot"></span> Ver transmisión en YouTube <span class="arrow">→</span></div>
+    </a>
+  </div>
+</section>
+
+<div class="info-strip">
+  <div class="info-item">
+    <span class="info-label">Ubicación</span>
+    <a href="https://maps.app.goo.gl/2cF4j9nMTqpB3qhR8?g_st=ic" target="_blank" rel="noopener noreferrer">
+      C. Isla Hébridas 3435, Jardines del Sur, 44950 Guadalajara, Jal.
+    </a>
+  </div>
+  <div class="info-item">
+    <span class="info-label">Grupo de noticias</span>
+    <a href="https://chat.whatsapp.com/GBrP3jlXbHYC45fKF6vMK1" target="_blank" rel="noopener noreferrer">
+      Únete a Smirna Noticias por WhatsApp
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="social-row">
+    <a href="https://www.instagram.com/smirna.gdl" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="https://www.facebook.com/iglesiasmirnagdl/" target="_blank" rel="noopener noreferrer">Facebook</a>
+    <a href="https://www.youtube.com/c/SmirnaGDL" target="_blank" rel="noopener noreferrer">YouTube</a>
+  </div>
+  <div class="fine-print">© <span id="year"></span> Iglesia Smirna GDL</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
